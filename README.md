@@ -1,16 +1,16 @@
-# Automacao de Criacao e Remocao de Usuarios, Grupos e Permissoes
+# Automação de Criação e Remoção de Usuários, Pastas, Grupos e Permissões 
 
-Este conjunto de scripts automatiza a criacao e remocao de usuarios, grupos e configuracoes de permissoes em um sistema Linux. Ele e util para ambientes corporativos onde e necessario gerenciar usuarios de forma eficiente.
+Este conjunto de scripts automatiza a criação e remoção de usuários, grupos, pastas e configurações de permissões em um sistema Linux. Ele e útil para ambientes corporativos onde é necessário gerenciar usuários de forma eficiente.
 
 ## 📌 Funcionalidades
 Os scripts realizam as seguintes operações:
 
 ### `IaC_create_settings.sh`
-- Cria os diretorios `/publico`, `/adm`, `/ven` e `/sec`.
+- Cria os diretórios `/publico`, `/adm`, `/ven` e `/sec`.
 - Cria os grupos `GRP_ADM`, `GRP_VEN` e `GRP_SEC`.
-- Define as permissoes corretas para cada diretorio.
-- Cria usuarios e os adiciona aos respectivos grupos.
-- Define senhas padrao e obriga os usuarios a alterarem no primeiro login.
+- Define as permissões corretas para cada diretório.
+- Cria usuários e os adiciona aos respectivos grupos.
+- Define senhas padrão e obriga os usuarios a alterarem no primeiro login.
 
 ### `IaC_delete_settings.sh`
 - Remove todos os usuários comuns (com UID maior ou igual a 1001), excluindo suas pastas pessoais.
