@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Criando diretórios
+mkdir /publico /adm /ven /sec
+
+# Criando grupos
+groupadd GRP_ADM
+groupadd GRP_VEN
+groupadd GRP_SEC
+
+# Definindo donos e grupos dos diretórios
+chown root:GRP_ADM /adm
+chown root:GRP_VEN /ven
+chown root:GRP_SEC /sec
+
+# Definindo permissões dos diretórios
+chmod 770 /adm /ven /sec
+chmod 777 /publico
+
+# Definição dos usuários por grupo
+adm=(carlos maria joao)
+ven=(debora sebastiana roberto)
+sec=(josefina amanda rogerio)
+
+# Função para criar usuários
+criar_usuario() {
+    local usuario=$1
+    local grupo=$2
+    useradd $usuario -c "Usuário $grupo" -s /bin/bash -m
+    echo "$usuario:Senha123" | chpasswd 
+    chage -d 0 $usuario  
+    usermod -g $grupo $usuario
+}
+
+# Criando usuários para cada grupo
+for user in "${adm[@]}"; do criar_usuario "$user" "GRP_ADM"; done
+for user in "${ven[@]}"; do criar_usuario "$user" "GRP_VEN"; done
+for user in "${sec[@]}"; do criar_usuario "$user" "GRP_SEC"; done
+
+echo "Configuração concluída!"

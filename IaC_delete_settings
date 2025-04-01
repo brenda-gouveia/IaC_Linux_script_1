@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Removendo os usuários, e indiretamente excluindo as suas pastas
+# Filtra pelo UID (User ID), para usuários comuns costumam ser a partir de 1000
+
+for user in $(awk -F: '$3 >= 1001 {print $1}' /etc/passwd); do
+    echo "Removendo usuário: $user"
+    userdel -r -f "$user"
+done
+
+
+# Removendo os grupos de usuários
+#
+for group in $(awk -F: '$3 >= 1000 {print $1}' /etc/group); do
+    echo "Removendo grupo: $group"
+    groupdel "$group"
+done
